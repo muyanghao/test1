@@ -175,7 +175,7 @@
         password: password.value
       };
   
-      fetch("https://your-api-name.onrender.com/register", {
+      fetch("https://tidebit-backend.onrender.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -193,7 +193,7 @@
       })
       .catch(err => {
         console.error("Registration failed:", err);
-        alert("Registration failed.");
+        alert("Registration failed." + data.message);
       });
     });
   </script>
