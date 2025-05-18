@@ -119,9 +119,9 @@
     <div class="login-box">
       <h2>Register</h2>
       <form id="register-form">
-        <input type="text" id="username" placeholder="Username" required />
-        <input type="email" id="email" placeholder="Email" required />
-        <input type="password" id="password" placeholder="Password" required />
+        <input type="text" id="username" name="username" placeholder="Username" required />
+        <input type="email" id="email" name="email" placeholder="Email" required />
+        <input type="password" id="password" name="password" placeholder="Password" required />
         <button type="submit">Register</button>
       </form>
       
@@ -175,7 +175,7 @@
         password: password.value
       };
   
-      fetch("https://tidebit-backend.onrender.com", {
+      fetch("https://tidebit-backend.onrender.com/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -193,7 +193,7 @@
       })
       .catch(err => {
         console.error("Registration failed:", err);
-        alert("Registration failed." + data.message);
+        alert("Registration failed." + err.message);
       });
     });
   </script>
