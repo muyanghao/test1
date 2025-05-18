@@ -53,14 +53,26 @@
       background: rgba(255, 255, 255, 0.2);
     }
 
-    .login-btn {
+    .login-btn, .user-container {
       margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .login-btn a {
       background: white;
       color: #0a0f2c;
       padding: 8px 20px;
       border-radius: 12px;
       font-weight: bold;
       text-decoration: none;
+    }
+
+    .logout {
+      cursor: pointer;
+      color: white;
+      font-weight: bold;
     }
 
     main {
@@ -89,7 +101,9 @@
       <a onclick="showPage('about')">About</a>
       <a onclick="showPage('contact')">Contact</a>
     </nav>
-    <a class="login-btn" href="pages/login.html">Login</a>
+    <div class="login-btn" id="authArea">
+      <a href="pages/login.html">Login</a>
+    </div>
   </header>
 
   <main>
@@ -97,17 +111,14 @@
       <h1>Home</h1>
       <p>🐖🐖🐖🐖🐖🐖🐖🐖🐖🐖🐖🐖🐖</p>
     </section>
-
     <section id="features">
       <h1>Features</h1>
       <p>Here are our amazing features.</p>
     </section>
-
     <section id="about">
       <h1>About</h1>
       <p>About our project and vision.</p>
     </section>
-
     <section id="contact">
       <h1>Contact</h1>
       <p>Reach us at contact@example.com</p>
@@ -123,13 +134,42 @@
       event.target.classList.add("active");
     }
 
-    // 星空动画
+    // 登录状态检查
+    function updateLoginUI() {
+      const authArea = document.getElementById("authArea");
+      const username = localStorage.getItem("username");
+
+      if (username) {
+        const container = document.createElement("div");
+        container.className = "user-container";
+
+        const nameSpan = document.createElement("span");
+        nameSpan.textContent = username;
+
+        const logoutBtn = document.createElement("span");
+        logoutBtn.className = "logout";
+        logoutBtn.textContent = "Log out";
+        logoutBtn.onclick = () => {
+          localStorage.removeItem("username");
+          location.reload();
+        };
+
+        container.appendChild(nameSpan);
+        container.appendChild(logoutBtn);
+
+        authArea.replaceWith(container);
+      }
+    }
+
+    updateLoginUI();
+
+    // 星空背景动画
     const canvas = document.getElementById("stars");
     const ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const stars = Array.from({length: 100}, () => ({
+    const stars = Array.from({ length: 100 }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
       r: Math.random() * 1.5 + 0.5,
@@ -148,6 +188,7 @@
       }
       requestAnimationFrame(animateStars);
     }
+
     animateStars();
 
     window.addEventListener("resize", () => {

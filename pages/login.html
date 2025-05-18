@@ -158,7 +158,9 @@
       
             if (data.status === "ok") {
               alert("Login successful!");
-              // 可以在这里跳转页面，比如 window.location.href = "home.html"
+              localStorage.setItem("username", document.getElementById("username").value);
+
+              window.location.href = "../index.html";
             } else {
               alert("Login failed: " + data.message);
             }
@@ -202,6 +204,34 @@
       © 2025 
     </footer>
   </div>
+
+  <script>
+    function handleLogin() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+    
+      fetch("https://tidebit-backend.onrender.com/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === "ok") {
+          localStorage.setItem("username", username); 
+          alert("success");
+          window.location.href = "../index.html";     
+        } else {
+          alert("login fail：" + data.message);
+        }
+      })
+      .catch(err => {
+        console.error("err", err);
+        alert("err。");
+      });
+    }
+    </script>
+    
 
   <script>
     const canvas = document.getElementById("stars");
