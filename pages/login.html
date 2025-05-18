@@ -218,13 +218,13 @@
       .then(res => res.json())
       .then(data => {
         if (data.status === "ok") {
-          localStorage.setItem("username", username); 
-          alert("success");
-          window.location.href = "../index.html";     
+          localStorage.setItem("username", document.getElementById("username").value);
+          window.location.href = "../index.html";  
         } else {
-          alert("login fail：" + data.message);
+          alert("登录失败：" + data.message);
         }
       })
+      
       .catch(err => {
         console.error("err", err);
         alert("err。");
