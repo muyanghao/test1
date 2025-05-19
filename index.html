@@ -13,6 +13,28 @@
       height: 100%;
       overflow: hidden;
     }
+    .hero {
+      text-align: center;
+      padding-top: -30px;
+      color: white;
+    }
+    
+    .hero-title {
+      font-size: 80px;
+      font-weight: 800;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+      margin-bottom: 20px;
+    }
+    
+    .hero-subtitle {
+      font-size: 18px;
+      color: #cccccc;
+      line-height: 1.6;
+    }
+    
+    
 
     canvas {
       position: fixed;
@@ -28,26 +50,31 @@
       align-items: center;
       padding: 20px 40px;
       background: rgba(0, 0, 0, 0.4);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      position: relative;
+    }
+    
+    .spacer {
+      width: 100px; /* 左侧占位，可调节大小让 nav 居中 */
     }
     
     .nav {
-      margin: auto;
       display: flex;
       gap: 20px;
       background: rgba(255, 255, 255, 0.08);
       padding: 8px 16px;
       border-radius: 40px;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
     }
     
     .nav a {
       color: white;
       text-decoration: none;
+      font-weight: bold;
       padding: 8px 16px;
       border-radius: 20px;
-      font-weight: 600;
-      transition: background 0.3s ease;
     }
     
     .nav a:hover {
@@ -66,8 +93,8 @@
     }
 
     .login-btn a {
-      background: white;
-      color: #0a0f2c;
+      background-color: white;
+      color: #111;
       padding: 8px 20px;
       border-radius: 12px;
       font-weight: bold;
@@ -94,29 +121,151 @@
     section.active {
       display: block;
     }
+    #pigImage {
+      display: block;
+      margin: 0 auto;
+      width: 700px;
+      transition: transform 0.3s ease-out;
+      transform-origin: center;
+      will-change: transform;
+    }
+    
+
+    .features {
+      text-align: center;
+      color: white;
+      padding: 80px 20px;
+    }
+    
+    .features-title {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 60px;
+      background: linear-gradient(to right, #ffffff, #777777);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .feature-grid {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    
+    .feature-box {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 40px 30px;
+      width: 300px;
+      transition: 0.3s ease;
+      box-shadow: 0 0 0 rgba(255,255,255,0);
+    }
+    
+    .feature-box:hover {
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      background: rgba(0, 0, 0, 0.6);
+      transform: translateY(-5px);
+    }
+    
+    .icon {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    
+    .feature-box h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    
+    .feature-box p {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .footer {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 30px 20px;
+      text-align: center;
+      color: #ccc;
+      font-size: 14px;
+      margin-top: 80px;
+    }
+    
+    
+    .footer-links {
+      margin-top: 10px;
+    }
+    
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      margin: 0 12px;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+    }
+    
+    
+    
   </style>
 </head>
 <body>
   <canvas id="stars"></canvas>
 
   <header class="header">
+    <div class="spacer"></div> 
     <nav class="nav">
       <a class="active" onclick="showPage('home')">Home</a>
       <a onclick="showPage('features')">Features</a>
       <a onclick="showPage('about')">About</a>
       <a onclick="showPage('contact')">Contact</a>
     </nav>
+  
     <div class="login-btn" id="authArea">
       <a href="pages/login.html">Login</a>
     </div>
   </header>
 
   <main>
-    <section id="home" class="active">               
-      <h1>Home</h1>
-      <p>🐖🐖🐖🐖🐖🐖🐖🐖🐖🐖🐖🐖🐖</p>
-      <p>🐖🐖🐖🐖🐖🐖🐖🐖🐖🐖🐖🐖🐖</p>
-      <img src="img/pig1.png" alt="pig">
+    <section id="home" class="active">  
+      
+      
+      <div class="hero">
+        <h1 class="hero-title">TIDEBIT</h1>
+        <p class="hero-subtitle">
+          The premium utility mod for modern Minecraft<br>
+          Tidebit provides a variety of features to enhance your gameplay experience.
+        </p>
+      </div>
+      <img id="pigImage" src="img/pig1.png" alt="Pig">
+
+
+      <div class="features">
+        <h2 class="features-title">Features to enhance your <br> Minecraft experience</h2>
+        <div class="feature-grid">
+          <div class="feature-box">
+            <div class="icon">👁️‍🗨️</div>
+            <h3>Visuals</h3>
+            <p>Unique and sleek client renders to elevate your visuals</p>
+          </div>
+          <div class="feature-box">
+            <div class="icon">🏃‍♂️</div>
+            <h3>Utility</h3>
+            <p>Multitude of utility features for modern Minecraft servers</p>
+          </div>
+          <div class="feature-box">
+            <div class="icon">🔥</div>
+            <h3>PVP</h3>
+            <p>Elite PVP features for domination on crystal PVP servers</p>
+          </div>
+        </div>
+      </div>
+      
+
 
     
     
@@ -138,6 +287,32 @@
       <p>Reach us at contact@example.com</p>
     </section>
   </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Tidebit. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+
+    </div>
+  </footer>
+  
+
+  <script>  //pig....
+    const pig = document.getElementById("pigImage");
+  
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY;
+  
+      
+      const scale = 1 + scrollY / 1000; // 放大
+      const rotateX = scrollY / 30;     // X轴旋转
+      const rotateY = scrollY / 60;     // Y轴旋转
+  
+      pig.style.transform = `perspective(1000px) scale(${scale}) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+  </script>
+  
+  
 
   <script>
     const navLinks = document.querySelectorAll(".nav a");
