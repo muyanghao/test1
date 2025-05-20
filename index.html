@@ -90,6 +90,7 @@
       font-weight: bold;
       padding: 8px 16px;
       border-radius: 20px;
+      cursor: pointer;
     }
     
     .nav a:hover {
@@ -205,7 +206,7 @@
     }
     
     .pricing-section {
-      padding: 100px 20px;
+      padding: 0px 20px;
       text-align: center;
       color: white;
     }
@@ -287,6 +288,58 @@
       background: #e0e0e0;
     }
     
+                              
+    .compare-section {      
+      text-align: center;
+      padding: 100px 20px;
+      
+    }
+
+    .compare-table {
+      max-width: 800px;
+      margin: 0 auto;
+      background: linear-gradient(to bottom, rgba(30, 30, 30, 0.5), rgba(0, 0, 0, 0.5));
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      overflow: hidden;
+      color: white;
+      font-weight: 500;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+
+    .compare-subtitle {
+      color: #ccc;
+      font-size: 16px;
+      margin-bottom: 50px;
+    }
+
+    
+
+    .compare-row {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      padding: 20px 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      align-items: center;
+    }
+
+    .compare-row:first-child {
+      background: rgba(255, 255, 255, 0.05);
+      font-weight: 700;
+      border-top: none;
+    }
+
+    .compare-row div {
+      font-size: 16px;
+    }
+
+    .compare-row div:nth-child(2),
+    .compare-row div:nth-child(3) {
+      text-align: center;
+    }
+
     
   </style>
 </head>
@@ -299,8 +352,8 @@
     <nav class="nav">
       <a class="active" onclick="showPage('home')">Home</a>
       <a onclick="showPage('features')">Features</a>
-      <a onclick="showPage('about')">About</a>
-      <a onclick="showPage('contact')">Contact</a>
+      <a onclick="showPage('purchase')">Purchase</a>
+      <a onclick="showPage('contact')">Discord</a>
     </nav>
   
     <div class="login-btn" id="authArea">
@@ -388,9 +441,82 @@
     </section>
     
     
-    <section id="about">
-      <h1>About</h1>
-      <p>About our project and vision.</p>
+    <section id="purchase">
+      
+      <div class="pricing-section">                  <!-- price -->
+        <h2 class="pricing-title">Pricing</h2>
+        <p class="pricing-subtitle">View our pricing options and choose the best fit for you.</p>
+
+        <div class="pricing-cards">
+    <!-- Standard -->
+          <div class="card">
+            <h3>Standard Access</h3>
+            <div class="price">$19.99</div>
+            <ul>
+              <li>✔ License key for one device</li>
+              <li>✔ Premium client support</li>
+              <li>✔ Lifetime access to all utility features</li>
+              <li>✔ Access to public configs</li>
+              <li>✔ Access to client forums</li>
+            </ul>
+            <a href="#" class="pricing-btn">Get Access</a>
+          </div>
+
+    <!-- Beta -->
+          <div class="card premium">
+            <h3>Beta Access</h3>
+            <div class="price">$249.99</div>
+            <ul>
+              <li>✔ Updates before release</li>
+              <li>✔ Direct contact with developers</li>
+              <li>✔ Exclusive Beta-only features</li>
+              <li>✔ Access to developer configs</li>
+              <li>✔ Exclusive IRC cosmetics</li>
+            </ul>
+            <a href="#" class="pricing-btn">Get Access</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="compare-section">
+        <h1 class="compare-title">Compare Plans</h1>
+        <p class="compare-subtitle">Learn the benefits of the different Shoreline pricing plans.</p>
+
+        <div class="compare-table">
+          <div class="compare-row header">
+            <div>Plans</div>
+            <div>Standard</div>
+            <div>Beta</div>
+          </div>
+          <div class="compare-row">
+            <div>Max Devices</div>
+            <div>1</div>
+            <div>2</div>
+          </div>
+          <div class="compare-row">
+            <div>Priority Support</div>
+            <div>❌</div>
+            <div>✅</div>
+          </div>
+          <div class="compare-row">
+            <div>Developer Configs</div>
+            <div>❌</div>
+            <div>✅</div>
+          </div>
+          <div class="compare-row">
+            <div>Nightly Builds</div>
+            <div>❌</div>
+            <div>✅</div>
+          </div>
+          <div class="compare-row">
+            <div>IRC Cosmetics</div>
+            <div>❌</div>
+            <div>✅</div>
+          </div>
+        </div>
+      </div>
+
+
     </section>
     
     
