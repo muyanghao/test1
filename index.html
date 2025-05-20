@@ -53,7 +53,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      z-index: -1;
+      z-index: 1;
       pointer-events: none;
       width: 100vw;
       height: 100vh;
@@ -510,56 +510,68 @@
   </script>
 
   <script>
-    const meteorCanvas = document.getElementById("meteors");
-    const meteorCtx = meteorCanvas.getContext("2d");
-    meteorCanvas.width = window.innerWidth;
-    meteorCanvas.height = window.innerHeight;
+  const meteorCanvas = document.getElementById("meteors");
+  const meteorCtx = meteorCanvas.getContext("2d");
+  meteorCanvas.width = window.innerWidth;
+  meteorCanvas.height = window.innerHeight;
 
-    const meteors = Array.from({ length: 3 }, () => ({
-      reset() {
-        this.x = Math.random() * meteorCanvas.width;
-        this.y = Math.random() * -meteorCanvas.height;
-        this.length = Math.random() * 100 + 100;
-        this.speed = Math.random() * 2 + 2;
-        this.opacity = Math.random() * 0.3 + 0.3;
-        this.angle = Math.PI / 4;
-      }
-    }));
+  const meteors = [];
 
-    meteors.forEach(m => m.reset());
+  function spawnMeteor() {
+    const meteor = {
+      x: Math.random() * meteorCanvas.width,
+      y: Math.random() * (meteorCanvas.height / 2), // 只在上半部分
+      length: Math.random() * 30 + 30,
+      speed: 900, // 每秒 600px
+      opacity: Math.random() * 0.3 + 0.4,
+      angle: (5 * -Math.PI) / 4, // 左下方向
+      createdAt: performance.now()
+    };
+    meteors.push(meteor);
+  }
 
-    function animateMeteors() {
-      meteorCtx.clearRect(0, 0, meteorCanvas.width, meteorCanvas.height);
+  function animateMeteors(now) {
+    meteorCtx.clearRect(0, 0, meteorCanvas.width, meteorCanvas.height);
 
-      for (const m of meteors) {
-        const dx = Math.cos(m.angle) * m.length;
-        const dy = Math.sin(m.angle) * m.length;
+    const alive = [];
 
-        meteorCtx.beginPath();
-        meteorCtx.moveTo(m.x, m.y);
-        meteorCtx.lineTo(m.x + dx, m.y + dy);
-        meteorCtx.strokeStyle = `rgba(255,255,255,${m.opacity})`;
-        meteorCtx.lineWidth = 1.2;
-        meteorCtx.stroke();
+    for (const m of meteors) {
+      const elapsed = now - m.createdAt;
+      if (elapsed > 400) continue; // 0.5秒后消失
 
-        m.x += Math.cos(m.angle) * m.speed;
-        m.y += Math.sin(m.angle) * m.speed;
+      const t = elapsed / 1000;
+      const dx = Math.cos(m.angle) * m.length;
+      const dy = Math.sin(m.angle) * m.length;
 
-        if (m.x > meteorCanvas.width || m.y > meteorCanvas.height) {
-          m.reset();
-        }
-      }
+      const x = m.x + Math.cos(m.angle) * m.speed * t;
+      const y = m.y + Math.sin(m.angle) * m.speed * t;
 
-      requestAnimationFrame(animateMeteors);
+      meteorCtx.beginPath();
+      meteorCtx.moveTo(x, y);
+      meteorCtx.lineTo(x + dx, y + dy);
+      meteorCtx.strokeStyle = `rgba(255,255,255,${m.opacity})`;
+      meteorCtx.lineWidth = 0.8;
+      meteorCtx.stroke();
+
+      alive.push(m); // 还在飞行中的保留
     }
 
-    animateMeteors();
+    meteors.length = 0;
+    meteors.push(...alive);
 
-    window.addEventListener("resize", () => {
-      meteorCanvas.width = window.innerWidth;
-      meteorCanvas.height = window.innerHeight;
-    });
-  </script>
+    requestAnimationFrame(animateMeteors);
+  }
+
+  // 每隔 300-800ms 生成一颗新流星
+  setInterval(spawnMeteor, 1100 + Math.random() * 900);
+
+  requestAnimationFrame(animateMeteors);
+
+  window.addEventListener("resize", () => {
+    meteorCanvas.width = window.innerWidth;
+    meteorCanvas.height = window.innerHeight;
+  });
+</script>
 
 </body>
 </html>
