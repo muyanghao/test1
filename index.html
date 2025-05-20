@@ -8,10 +8,13 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #0a0f2c;
+      background: radial-gradient(circle at center,rgb(68,21,93) 0%,#0a0f2c 60%,#000000 100%);
+      min-height: 100vh;
       color: white;
       height: 100%;
-      overflow: hidden;
+      
+      position: relative;
+      
     }
     .hero {
       text-align: center;
@@ -20,12 +23,13 @@
     }
     
     .hero-title {
-      font-size: 80px;
-      font-weight: 800;
-      letter-spacing: 8px;
+      font-size: 100px;
+      font-weight: 600;
+      letter-spacing: 12px;      
       text-transform: uppercase;
       font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
       margin-bottom: 20px;
+      margin-top: -40px;         
     }
     
     .hero-subtitle {
@@ -36,12 +40,23 @@
     
     
 
-    canvas {
+    #stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      pointer-events: none;
+      transition: transform 0.1s ease-out;
+    }
+
+    #meteors {
       position: fixed;
       top: 0;
       left: 0;
       z-index: -1;
       pointer-events: none;
+      width: 100vw;
+      height: 100vh;
     }
 
     .header {
@@ -61,7 +76,7 @@
     .nav {
       display: flex;
       gap: 20px;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(0,0,0,0.4);
       padding: 8px 16px;
       border-radius: 40px;
       position: absolute;
@@ -121,14 +136,19 @@
     section.active {
       display: block;
     }
+    
     #pigImage {
       display: block;
-      margin: 0 auto;
-      width: 700px;
-      transition: transform 0.3s ease-out;
+      margin: 200px auto;
+      width: 300%;
+      max-width: 800px;       
+      max-height: 800px;      
       transform-origin: center;
+      transition: transform 0.05s ease-out;
       will-change: transform;
     }
+
+
     
 
     .features {
@@ -183,39 +203,97 @@
       font-size: 14px;
       color: #ccc;
     }
-
-    .footer {
-      background: rgba(0, 0, 0, 0.4);
-      padding: 30px 20px;
+    
+    .pricing-section {
+      padding: 100px 20px;
       text-align: center;
-      color: #ccc;
-      font-size: 14px;
-      margin-top: 80px;
-    }
-    
-    
-    .footer-links {
-      margin-top: 10px;
-    }
-    
-    .footer-links a {
-      color: #ccc;
-      text-decoration: none;
-      margin: 0 12px;
-      transition: color 0.3s;
-    }
-    
-    .footer-links a:hover {
       color: white;
     }
-    
+
+    .pricing-title {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      background: linear-gradient(to right, #ffffff, #888888);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .pricing-subtitle {
+      font-size: 16px;
+      color: #ccc;
+      margin-bottom: 50px;
+    }
+
+    .pricing-cards {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 20px;
+      padding: 40px 30px;
+      width: 300px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+    }
+
+    .card h3 {
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    .price {
+      font-size: 40px;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+      font-size: 14px;
+      color: #ccc;
+      text-align: left;
+      margin-bottom: 30px;
+    }
+
+    .card ul li {
+      margin: 8px 0;
+    padding-left: 1em;
+      text-indent: -1em;
+    }
+
+    .pricing-btn {
+      display: inline-block;
+      background: white;
+      color: #4a00e0;
+      font-weight: bold;
+      padding: 12px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .pricing-btn:hover {
+      background: #e0e0e0;
+    }
     
     
   </style>
 </head>
 <body>
+  
   <canvas id="stars"></canvas>
-
+  <canvas id="meteors"></canvas>
   <header class="header">
     <div class="spacer"></div> 
     <nav class="nav">
@@ -230,12 +308,14 @@
     </div>
   </header>
 
+  
+
   <main>
     <section id="home" class="active">  
       
       
       <div class="hero">
-        <h1 class="hero-title">TIDEBIT</h1>
+        <h1 class="hero-title">520快乐🐖</h1>
         <p class="hero-subtitle">
           The premium utility mod for modern Minecraft<br>
           Tidebit provides a variety of features to enhance your gameplay experience.
@@ -245,7 +325,7 @@
 
 
       <div class="features">
-        <h2 class="features-title">Features to enhance your <br> Minecraft experience</h2>
+        <h2 class="features-title">Features to enhance your <br> experience</h2>
         <div class="feature-grid">
           <div class="feature-box">
             <div class="icon">👁️‍🗨️</div>
@@ -264,10 +344,42 @@
           </div>
         </div>
       </div>
-      
 
+      <div class="pricing-section">                  <!-- price -->
+        <h2 class="pricing-title">Pricing</h2>
+        <p class="pricing-subtitle">View our pricing options and choose the best fit for you.</p>
 
-    
+        <div class="pricing-cards">
+    <!-- Standard -->
+          <div class="card">
+            <h3>Standard Access</h3>
+            <div class="price">$19.99</div>
+            <ul>
+              <li>✔ License key for one device</li>
+              <li>✔ Premium client support</li>
+              <li>✔ Lifetime access to all utility features</li>
+              <li>✔ Access to public configs</li>
+              <li>✔ Access to client forums</li>
+            </ul>
+            <a href="#" class="pricing-btn">Get Access</a>
+          </div>
+
+    <!-- Beta -->
+          <div class="card premium">
+            <h3>Beta Access</h3>
+            <div class="price">$249.99</div>
+            <ul>
+              <li>✔ Updates before release</li>
+              <li>✔ Direct contact with developers</li>
+              <li>✔ Exclusive Beta-only features</li>
+              <li>✔ Access to developer configs</li>
+              <li>✔ Exclusive IRC cosmetics</li>
+            </ul>
+            <a href="#" class="pricing-btn">Get Access</a>
+          </div>
+        </div>
+      </div>
+
     
     </section>
     <section id="features">
@@ -288,29 +400,31 @@
     </section>
   </main>
 
-  <footer class="footer">
-    <p>&copy; 2025 Tidebit. All rights reserved.</p>
-    <div class="footer-links">
-      <a href="#">Privacy</a>
-
-    </div>
-  </footer>
   
+ <!-- //pig................ -->
 
-  <script>  //pig....
+  <!-- <script>  
     const pig = document.getElementById("pigImage");
-  
-    window.addEventListener("scroll", () => {
-      const scrollY = window.scrollY;
-  
-      
-      const scale = 1 + scrollY / 1000; // 放大
-      const rotateX = scrollY / 30;     // X轴旋转
-      const rotateY = scrollY / 60;     // Y轴旋转
-  
-      pig.style.transform = `perspective(1000px) scale(${scale}) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+   window.addEventListener("scroll", () => {
+      const rect = pig.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+    
+      const offset = rect.top + rect.height / 2 - windowHeight / 2;
+
+    
+      const clampedOffset = Math.max(-200, Math.min(200, offset));
+
+    
+      const rotateX = clampedOffset / 20; 
+      const scale = 1 - Math.abs(clampedOffset) / 2000;  
+
+      pig.style.transform = `perspective(1000px) rotateX(${rotateX}deg) scale(${1 + scale})`;
     });
-  </script>
+  </script> -->
+
+
   
   
 
@@ -358,11 +472,11 @@
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const stars = Array.from({ length: 100 }, () => ({
+    const stars = Array.from({ length: 70 }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      r: Math.random() * 1.5 + 0.5,
-      speed: Math.random() * 0.3 + 0.1
+      r: Math.random() * 1 + 0.5,
+      speed: Math.random() * 0.2 + 0.1
     }));
 
     function animateStars() {
@@ -384,6 +498,68 @@
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     });
+
+    document.addEventListener("mousemove", (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 40;
+      const y = (e.clientY / window.innerHeight - 0.5) * 40;
+      const canvas = document.getElementById("stars");
+      if (canvas) {
+        canvas.style.transform = `translate(${x}px, ${y}px)`;
+      }
+    });
   </script>
+
+  <script>
+    const meteorCanvas = document.getElementById("meteors");
+    const meteorCtx = meteorCanvas.getContext("2d");
+    meteorCanvas.width = window.innerWidth;
+    meteorCanvas.height = window.innerHeight;
+
+    const meteors = Array.from({ length: 3 }, () => ({
+      reset() {
+        this.x = Math.random() * meteorCanvas.width;
+        this.y = Math.random() * -meteorCanvas.height;
+        this.length = Math.random() * 100 + 100;
+        this.speed = Math.random() * 2 + 2;
+        this.opacity = Math.random() * 0.3 + 0.3;
+        this.angle = Math.PI / 4;
+      }
+    }));
+
+    meteors.forEach(m => m.reset());
+
+    function animateMeteors() {
+      meteorCtx.clearRect(0, 0, meteorCanvas.width, meteorCanvas.height);
+
+      for (const m of meteors) {
+        const dx = Math.cos(m.angle) * m.length;
+        const dy = Math.sin(m.angle) * m.length;
+
+        meteorCtx.beginPath();
+        meteorCtx.moveTo(m.x, m.y);
+        meteorCtx.lineTo(m.x + dx, m.y + dy);
+        meteorCtx.strokeStyle = `rgba(255,255,255,${m.opacity})`;
+        meteorCtx.lineWidth = 1.2;
+        meteorCtx.stroke();
+
+        m.x += Math.cos(m.angle) * m.speed;
+        m.y += Math.sin(m.angle) * m.speed;
+
+        if (m.x > meteorCanvas.width || m.y > meteorCanvas.height) {
+          m.reset();
+        }
+      }
+
+      requestAnimationFrame(animateMeteors);
+    }
+
+    animateMeteors();
+
+    window.addEventListener("resize", () => {
+      meteorCanvas.width = window.innerWidth;
+      meteorCanvas.height = window.innerHeight;
+    });
+  </script>
+
 </body>
 </html>
