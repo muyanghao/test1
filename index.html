@@ -16,26 +16,39 @@
       position: relative;
       
     }
+
     .hero {
       text-align: center;
-      padding-top: -30px;
-      color: white;
+      margin-top: -80px;
     }
-    
+
+    .hero-title-wrapper {
+      display: inline-flex;             /* ✅ 使整个组合居中 */
+      align-items: center;             /* ✅ 图标和文字垂直对齐 */
+      gap: 0px;
+    }
+
+    .logo-icon {
+      height: 280px;
+      width: auto;
+      vertical-align: middle;
+      margin-right: -40px;
+    }
+
     .hero-title {
-      font-size: 100px;
+      font-size: 110px;
       font-weight: 600;
-      letter-spacing: 12px;      
-      text-transform: uppercase;
-      font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
-      margin-bottom: 20px;
-      margin-top: -40px;         
+      margin: 0;
+      letter-spacing: 20px;
+     
     }
+
     
     .hero-subtitle {
-      font-size: 18px;
+      font-size: 14px;
       color: #cccccc;
       line-height: 1.6;
+      margin-top: -50px;
     }
     
     
@@ -147,6 +160,8 @@
       transform-origin: center;
       transition: transform 0.05s ease-out;
       will-change: transform;
+      margin-top: 100px;
+      opacity: 1;
     }
 
 
@@ -368,10 +383,15 @@
       
       
       <div class="hero">
-        <h1 class="hero-title">520快乐🐖</h1>
+       <div class="hero-title-wrapper">
+          <img src="img/logo1.png" alt="Tidebit Logo" class="logo-icon">
+          <h1 class="hero-title">TIDEBIT</h1>
+        </div>
+
         <p class="hero-subtitle">
           The premium utility mod for modern Minecraft<br>
-          Tidebit provides a variety of features to enhance your gameplay experience.
+          Tidebit provides a variety of features to<br>
+          enhance your gameplay experience.
         </p>
       </div>
       <img id="pigImage" src="img/pig1.png" alt="Pig">
@@ -436,8 +456,7 @@
     
     </section>
     <section id="features">
-      <h1>Features</h1>
-      <p>Here are our amazing features.</p>
+      <h1></h1>
     </section>
     
     
