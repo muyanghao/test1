@@ -138,8 +138,8 @@
 
     main {
       padding: 60px 20px;
-      height: calc(100vh - 60px);
-      overflow-y: auto;
+      height: auto;
+      overflow: visible;   
     }
 
     section {
@@ -355,6 +355,19 @@
       text-align: center;
     }
 
+    .download-btn {
+      display: inline-block;
+      background-color: #211e4f;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+    .download-btn:hover {
+      background-color: #3730a3;
+    }
+
+
     
   </style>
 </head>
@@ -366,7 +379,7 @@
     <div class="spacer"></div> 
     <nav class="nav">
       <a class="active" onclick="showPage('home')">Home</a>
-      <a onclick="showPage('features')">Features</a>
+      <a onclick="showPage('features')">Download</a>
       <a onclick="showPage('purchase')">Purchase</a>
       <a onclick="showPage('contact')">Discord</a>
     </nav>
@@ -456,7 +469,10 @@
     
     </section>
     <section id="features">
-      <h1></h1>
+      <a>mio configs</a>
+      <a href="download/BBTT.json" download class="download-btn">Download</a>
+
+
     </section>
     
     
