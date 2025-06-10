@@ -71,9 +71,31 @@
     button:last-of-type:hover {
       background-color: #b02a37;
     }
+    .back-btn {
+      position: relative;
+      top: 24px;
+      margin-right: 24px;
+      margin-left: 16px;  
+      padding: 12px 18px;
+      font-size: 20px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50px;
+      color: #0a0f2c;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+      
+    .back-btn:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
   </style>
 </head>
 <body>
+  <header class="header">
+        <a class="back-btn" href="../index.html">←</a>
+    
+  </header>
   <div class="chat-container" id="chat-container">
     <!-- Chat messages appear here -->
   </div>
