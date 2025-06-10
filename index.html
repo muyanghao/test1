@@ -479,7 +479,9 @@
     <section id="features">
       <a>mio configs</a><br>
       <a href="download/BBTT.json" download class="download-btn">Download</a>
-      <div style="height: 600px;"></div>
+
+      <a href="./pages/chat.html" class="chat">AI chat</a>
+      <div style="height: 500px;"></div>
 
 
     </section>
@@ -566,7 +568,7 @@
     
     <section id="contact">
       <h1></h1>
-      <div style="height: 600px;"></div>
+      <div style="height: 500px;"></div>
     </section>
   </main>
 
@@ -695,11 +697,11 @@
   function spawnMeteor() {
     const meteor = {
       x: Math.random() * meteorCanvas.width,
-      y: Math.random() * (meteorCanvas.height / 2), // 只在上半部分
+      y: Math.random() * (meteorCanvas.height / 2),
       length: Math.random() * 30 + 30,
-      speed: 900, // 每秒 600px
+      speed: 900, 
       opacity: Math.random() * 0.3 + 0.4,
-      angle: (5 * -Math.PI) / 4, // 左下方向
+      angle: (5 * -Math.PI) / 4,
       createdAt: performance.now()
     };
     meteors.push(meteor);
@@ -712,7 +714,7 @@
 
     for (const m of meteors) {
       const elapsed = now - m.createdAt;
-      if (elapsed > 400) continue; // 0.5秒后消失
+      if (elapsed > 400) continue; 
 
       const t = elapsed / 1000;
       const dx = Math.cos(m.angle) * m.length;
@@ -728,7 +730,7 @@
       meteorCtx.lineWidth = 0.8;
       meteorCtx.stroke();
 
-      alive.push(m); // 还在飞行中的保留
+      alive.push(m);
     }
 
     meteors.length = 0;
@@ -737,7 +739,6 @@
     requestAnimationFrame(animateMeteors);
   }
 
-  // 每隔 300-800ms 生成一颗新流星
   setInterval(spawnMeteor, 1100 + Math.random() * 900);
 
   requestAnimationFrame(animateMeteors);

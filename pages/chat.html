@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI chat box</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    .chat-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+    .message {
+      margin: 0.5rem 0;
+      padding: 0.75rem;
+      border-radius: 10px;
+      max-width: 80%;
+      word-wrap: break-word;
+    }
+    .user {
+      background-color: #daf1ff;
+      align-self: flex-end;
+    }
+    .bot {
+      background-color: #e0e0e0;
+      align-self: flex-start;
+    }
+    .input-container {
+      display: flex;
+      padding: 1rem;
+      border-top: 1px solid #ccc;
+      background: white;
+    }
+    input {
+      flex: 1;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      margin-left: 0.5rem;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:first-of-type {
+      background-color: #007bff;
+      color: white;
+    }
+    button:first-of-type:hover {
+      background-color: #0056b3;
+    }
+    button:last-of-type {
+      background-color: #dc3545;
+      color: white;
+    }
+    button:last-of-type:hover {
+      background-color: #b02a37;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container" id="chat-container">
+    <!-- Chat messages appear here -->
+  </div>
+  <div class="input-container">
+    <input type="text" id="user-input" placeholder="Input here..." />
+    <button onclick="sendMessage()">Enter</button>
+    <button onclick="resetContext()">Reset</button>
+  </div>
+
+  <script>
+    async function sendMessage() {
+      const input = document.getElementById("user-input");
+      const message = input.value.trim();
+      if (!message) return;
+
+      addMessage("user", message);
+      input.value = "";
+
+      try {
+        const res = await fetch("https://tidebit-backend.onrender.com/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message }),
+        });
+        const data = await res.json();
+        addMessage("bot", data.response || "（no responce）");
+      } catch (err) {
+        addMessage("bot", "❌Fail to connect");
+        console.error(err);
+      }
+    }
+
+    async function resetContext() {
+      try {
+        const res = await fetch("https://tidebit-backend.onrender.com/api/reset", {
+          method: "POST"
+        });
+        const data = await res.json();
+        clearChat();
+        addMessage("bot", "✅ Reseted");
+      } catch (err) {
+        addMessage("bot", "❌ Fail");
+        console.error(err);
+      }
+    }
+
+    function addMessage(role, text) {
+      const container = document.getElementById("chat-container");
+      const div = document.createElement("div");
+      div.className = `message ${role}`;
+      div.textContent = text;
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function clearChat() {
+      const container = document.getElementById("chat-container");
+      container.innerHTML = "";
+    }
+  </script>
+</body>
+</html>
