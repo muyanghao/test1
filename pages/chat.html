@@ -97,7 +97,7 @@
     
   </header>
   <div class="chat-container" id="chat-container">
-    <!-- Chat messages appear here -->
+  
   </div>
   <div class="input-container">
     <input type="text" id="user-input" placeholder="Input here..." />
@@ -120,8 +120,9 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ message }),
         });
-        const data = await res.json();
-        addMessage("bot", data.response || "（no responce）");
+        sleep(5)
+        await res.json();
+        addMessage("bot", data.response || "（no response）");
       } catch (err) {
         addMessage("bot", "❌Fail to connect");
         console.error(err);
@@ -131,11 +132,12 @@
     async function resetContext() {
       try {
         const res = await fetch("https://tidebit-backend.onrender.com/reset", {
-          method: "POST"
+          method: "POST",
+          headers: { "Content-Type": "application/json" }
         });
-        const data = await res.json();
+        await res.json();
         clearChat();
-        addMessage("bot", "✅ Reseted");
+        addMessage("bot", "✅ Reset");
       } catch (err) {
         addMessage("bot", "❌ Fail");
         console.error(err);
