@@ -120,7 +120,7 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ message }),
         });
-        await res.json();
+        const data = await res.json();
         addMessage("bot", data.response || "（no response）");
       } catch (err) {
         addMessage("bot", "❌Fail to connect");
@@ -134,7 +134,7 @@
           method: "POST",
           headers: { "Content-Type": "application/json" }
         });
-        await res.json();
+        const data = await res.json();
         clearChat();
         addMessage("bot", "✅ Reset");
       } catch (err) {
