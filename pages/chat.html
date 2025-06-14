@@ -88,6 +88,18 @@
     .back-btn:hover {
       background: rgba(255, 255, 255, 0.5);
     }
+    .typing-dots::after {
+      content: '';
+      display: inline-block;
+      width: 1em;
+      animation: dots 1s steps(3, end) infinite;
+    }
+    @keyframes dots {
+      0% { content: ''; }
+      33% { content: '.'; }
+      66% { content: '..'; }
+      100% { content: '...'; }
+    }
   </style>
 </head>
 <body>
@@ -118,7 +130,9 @@
       addMessage("user", message);
       input.value = "";
 
-      const thinkingNode = addMessage("bot", " Thinking...");
+
+      const thinkingNode = addMessage("bot", "Typing...");
+      thinkingNode.classList.add("typing-dots");
 
       try {
         const res = await fetch("https://tidebit-backend.onrender.com/chat", {
@@ -127,8 +141,16 @@
           body: JSON.stringify({ message }),
         });
         const data = await res.json();
-        thinkingNode.textContent = data.response || "No response";
+        const reply = data.response || "No response";
+
+ 
+        thinkingNode.classList.remove("typing-dots");
+        thinkingNode.textContent = "";
+
+ 
+        typeText(thinkingNode, reply);
       } catch (err) {
+        thinkingNode.classList.remove("typing-dots");
         thinkingNode.textContent = " Fail to connect";
         console.error(err);
       }
@@ -140,7 +162,7 @@
           method: "POST",
           headers: { "Content-Type": "application/json" }
         });
-        const data = await res.json();
+        await res.json();
         clearChat();
         addMessage("bot", " Reset");
       } catch (err) {
@@ -160,8 +182,19 @@
     }
 
     function clearChat() {
-      const container = document.getElementById("chat-container");
-      container.innerHTML = "";
+      document.getElementById("chat-container").innerHTML = "";
+    }
+
+    function typeText(element, text, speed = 20) {
+      let index = 0;
+      function type() {
+        if (index < text.length) {
+          element.textContent += text.charAt(index);
+          index++;
+          setTimeout(type, speed);
+        }
+      }
+      type();
     }
   </script>
 </body>
