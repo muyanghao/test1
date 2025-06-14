@@ -85,7 +85,6 @@
       text-decoration: none;
       transition: background 0.3s;
     }
-      
     .back-btn:hover {
       background: rgba(255, 255, 255, 0.5);
     }
@@ -93,12 +92,11 @@
 </head>
 <body>
   <header class="header">
-        <a class="back-btn" href="../index.html">←</a>
-    
+    <a class="back-btn" href="../index.html">←</a>
   </header>
-  <div class="chat-container" id="chat-container">
-  
-  </div>
+
+  <div class="chat-container" id="chat-container"></div>
+
   <div class="input-container">
     <input type="text" id="user-input" placeholder="Input here..." />
     <button onclick="sendMessage()">Enter</button>
@@ -106,6 +104,12 @@
   </div>
 
   <script>
+    document.getElementById("user-input").addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        sendMessage();
+      }
+    });
+
     async function sendMessage() {
       const input = document.getElementById("user-input");
       const message = input.value.trim();
@@ -114,6 +118,9 @@
       addMessage("user", message);
       input.value = "";
 
+      // 显示 "Thinking..." 消息，保存其 DOM 元素引用
+      const thinkingNode = addMessage("bot", "💬 Thinking...");
+
       try {
         const res = await fetch("https://tidebit-backend.onrender.com/chat", {
           method: "POST",
@@ -121,9 +128,9 @@
           body: JSON.stringify({ message }),
         });
         const data = await res.json();
-        addMessage("bot", data.response || "（no response）");
+        thinkingNode.textContent = data.response || "❓No response";
       } catch (err) {
-        addMessage("bot", "❌Fail to connect");
+        thinkingNode.textContent = "❌ Fail to connect";
         console.error(err);
       }
     }
@@ -150,6 +157,7 @@
       div.textContent = text;
       container.appendChild(div);
       container.scrollTop = container.scrollHeight;
+      return div; // 返回 DOM 元素供后续修改
     }
 
     function clearChat() {
