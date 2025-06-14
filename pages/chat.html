@@ -120,7 +120,6 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ message }),
         });
-        sleep(5)
         await res.json();
         addMessage("bot", data.response || "（no response）");
       } catch (err) {
