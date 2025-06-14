@@ -118,8 +118,7 @@
       addMessage("user", message);
       input.value = "";
 
-      // 显示 "Thinking..." 消息，保存其 DOM 元素引用
-      const thinkingNode = addMessage("bot", "💬 Thinking...");
+      const thinkingNode = addMessage("bot", " Thinking...");
 
       try {
         const res = await fetch("https://tidebit-backend.onrender.com/chat", {
@@ -128,9 +127,9 @@
           body: JSON.stringify({ message }),
         });
         const data = await res.json();
-        thinkingNode.textContent = data.response || "❓No response";
+        thinkingNode.textContent = data.response || "No response";
       } catch (err) {
-        thinkingNode.textContent = "❌ Fail to connect";
+        thinkingNode.textContent = " Fail to connect";
         console.error(err);
       }
     }
@@ -143,9 +142,9 @@
         });
         const data = await res.json();
         clearChat();
-        addMessage("bot", "✅ Reset");
+        addMessage("bot", " Reset");
       } catch (err) {
-        addMessage("bot", "❌ Fail");
+        addMessage("bot", " Fail");
         console.error(err);
       }
     }
@@ -157,7 +156,7 @@
       div.textContent = text;
       container.appendChild(div);
       container.scrollTop = container.scrollHeight;
-      return div; // 返回 DOM 元素供后续修改
+      return div;
     }
 
     function clearChat() {
