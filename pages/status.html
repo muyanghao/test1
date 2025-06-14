@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Status Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #111827;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      position: relative;
+    }
+    .back-btn {
+      position: absolute;
+      left: 1rem;
+      background-color: #374151;
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .back-btn:hover {
+      background-color: #4b5563;
+    }
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .service {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      border-bottom: 1px solid #ddd;
+    }
+    .service:last-child {
+      border-bottom: none;
+    }
+    .status {
+      display: flex;
+      align-items: center;
+    }
+    .dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      margin-right: 8px;
+      position: relative;
+    }
+    .dot.ok { background-color: #28a745; }
+    .dot.warn { background-color: #ffc107; }
+    .dot.down { background-color: #dc3545; }
+
+    .dot:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      font-size: 0.75rem;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="./index.html" class="back-btn">← Back</a>
+    🩺 System Status Monitor
+  </header>
+  <div class="container">
+    <div class="service">
+      <span>🧑‍💻 Login Service</span>
+      <div class="status"><div id="login-dot" class="dot" data-tooltip="Checking..."></div></div>
+    </div>
+    <div class="service">
+      <span>🧠 AI Inference</span>
+      <div class="status"><div id="ai-dot" class="dot" data-tooltip="Checking..."></div></div>
+    </div>
+    <div class="service">
+      <span>💾 Database</span>
+      <div class="status"><div id="db-dot" class="dot" data-tooltip="Checking..."></div></div>
+    </div>
+  </div>
+
+  <script>
+    const services = [
+      { id: 'login-dot', url: '/health/login', name: 'Login Service' },
+      { id: 'ai-dot', url: '/health/ai', name: 'AI Inference' },
+      { id: 'db-dot', url: '/health/db', name: 'Database' }
+    ];
+
+    async function checkServices() {
+      for (const service of services) {
+        const dot = document.getElementById(service.id);
+        try {
+          const res = await fetch(service.url);
+          if (!res.ok) throw new Error('Bad status');
+          const data = await res.json();
+          if (data.status === 'ok') {
+            dot.className = 'dot ok';
+            dot.setAttribute('data-tooltip', 'Operational');
+          } else {
+            dot.className = 'dot warn';
+            dot.setAttribute('data-tooltip', 'Degraded Performance');
+          }
+        } catch (e) {
+          dot.className = 'dot down';
+          dot.setAttribute('data-tooltip', 'Down');
+        }
+      }
+    }
+
+    checkServices();
+    setInterval(checkServices, 30000);
+  </script>
+</body>
+</html>
