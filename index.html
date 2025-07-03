@@ -25,28 +25,40 @@
       const username = document.getElementById("username").value;
       const password = document.getElementById("password").value;
 
+      
+        
+
       fetch("https://tidebit-backend.onrender.com/login", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify({ username, password })
-        })
-        .then(response => {
+      })
+      .then(response => {
         if (response.ok) {
-         window.location.href = "https://tidebit-backend.onrender.com/home.html";
+          return fetch("https://tidebit-backend.onrender.com/home.html", {
+            method: "GET",
+            credentials: "include"
+         });
         } else {
-            return response.json().then(data => {
-            throw new Error(data.message);
-        });
-      }
-})
-.catch(error => {
-  document.getElementById("message").textContent = error.message;
-});
+          throw new Error("登录失败");
+        }
+      })
+      .then(res => {
+        if (res.ok) {
+          window.location.href = "https://tidebit-backend.onrender.com/home.html";
+        } else {
+          throw new Error("登录后访问 home.html 被拒绝");
+        }
+      })
+      .catch(err => alert(err.message));
 
-    });
+      })
+      .catch(error => {
+        document.getElementById("message").textContent = error.message;
+      });
+
+
   </script>
 
 </body>
