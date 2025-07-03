@@ -416,7 +416,7 @@
     </nav>
   
     <div class="login-btn" id="authArea">
-      <a href=index.thml>Logout</a>
+      <a>Logout</a>
     </div>
   </header>
 
@@ -654,7 +654,7 @@
       })
       .then(response => response.json())
       .then(data => {
-        alert(data.message || "logout1");
+         console.log(data.message);
         window.location.href = "https://muyanghao.github.io/test1/index.html";
       })
       .catch(error => {
