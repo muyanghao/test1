@@ -647,34 +647,20 @@
       event.target.classList.add("active");
     }
 
-    // 登录状态检查
-    function updateLoginUI() {
-      const authArea = document.getElementById("authArea");
-      const username = localStorage.getItem("username");
-
-      if (username) {
-        const container = document.createElement("div");
-        container.className = "user-container";
-
-        const nameSpan = document.createElement("span");
-        nameSpan.textContent = username;
-
-        const logoutBtn = document.createElement("span");
-        logoutBtn.className = "logout";
-        logoutBtn.textContent = "Log out";
-        logoutBtn.onclick = () => {
-          localStorage.removeItem("username");
-          location.reload();
-        };
-
-        container.appendChild(nameSpan);
-        container.appendChild(logoutBtn);
-
-        authArea.replaceWith(container);
-      }
-    }
-
-    updateLoginUI();
+    document.getElementById("authArea").addEventListener("click", function () {
+      fetch("https://tidebit-backend.onrender.com/logout", {
+        method: "GET",
+        credentials: "include"
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message || "logout1");
+        window.location.href = "https://muyanghao.github.io/test1/index.html";
+      })
+      .catch(error => {
+        alert("Fail logout：" + error.message);
+      });
+    });
 
     // 星空背景动画
     const canvas = document.getElementById("stars");
