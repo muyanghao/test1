@@ -34,7 +34,7 @@
         })
         .then(response => {
         if (response.ok) {
-         window.location.href = "home.html";
+         window.location.href = "https://tidebit-backend.onrender.com/home.html";
         } else {
             return response.json().then(data => {
             throw new Error(data.message);
