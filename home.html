@@ -390,7 +390,16 @@
       margin-top: 100px; 
     }
 
-    
+    .text-box {
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 5rem;
+      font-size: 1rem;
+      line-height: 1.6;
+      box-sizing: border-box;
+      width: auto;       
+    }
   </style>
 </head>
 <body>
@@ -401,13 +410,13 @@
     <div class="spacer"></div> 
     <nav class="nav">
       <a class="active" onclick="showPage('home')">Home</a>
-      <a onclick="showPage('features')">Download</a>
+      <a onclick="showPage('features')">Events</a>
       <a onclick="showPage('purchase')">Purchase</a>
-      <a onclick="showPage('contact')">Discord</a>
+      <a onclick="showPage('contact')">Blog</a>
     </nav>
   
     <div class="login-btn" id="authArea">
-      <a href="pages/login.html">Login</a>
+      <a href=#>Login</a>
     </div>
   </header>
 
@@ -491,14 +500,19 @@
     
     </section>
     <section id="features">
-      <a></a><br>
-      <!-- <a href="download/BBTT.json" download class="download-btn">Download</a><br> -->
+      <!-- <a></a><br>
+      <a href="download/BBTT.json" download class="download-btn">Download</a><br>
 
       <a href="./pages/chat.html" class="chat">chat</a><br>
       <div style="height: 50px;"></div>
       <a href="./pages/status.html" class="status">status</a>
-      <div style="height: 500px;"></div>
+      <div style="height: 500px;"></div> -->
 
+      <h1>EVENTS</h1>
+      <div class="text-box">   <!-- EVENT1 -->
+        <P><h1>DATE: 2025.7.4</h1>Rockyou<br>In 2009, a company called RockYou suffered one of the most infamous data breaches in cybersecurity history. RockYou was known for developing social media applications, particularly for platforms like MySpace and Facebook. However, due to poor security practices, the company stored user passwords in plain text—without any encryption or hashing. This critical vulnerability allowed an attacker to access a database containing over 32 million user accounts. Once the breach became public, the damage was already done. Millions of usernames and passwords were leaked onto the internet, and because they were stored in plain text, anyone could read them without special tools or techniques. The event quickly gained attention across the cybersecurity community—not only because of its scale, but because it revealed how weak and predictable many user-created passwords were. After the breach, security researchers compiled the exposed passwords into a single text file, which became known as rockyou.txt. This file contains over 14 million unique passwords and is still widely used today in penetration testing, password audits, and cybersecurity training. It's often included by default in tools like Kali Linux and used with password-cracking software such as John the Ripper, Hydra, and Hashcat. What makes the rockyou.txt file particularly valuable is that it represents real-world password behavior. Many of the passwords in the list are extremely common—examples include “123456,” “password,” “qwerty,” and “iloveyou.” Because of this, attackers and ethical hackers alike use the list to simulate realistic password-guessing attacks or test the strength of login systems. Though the RockYou breach was a failure of basic security practices, it inadvertently provided a lasting resource for the cybersecurity world. Today, it serves as both a cautionary tale about the dangers of poor password storage and a practical tool for strengthening defenses against similar attacks.</P><br>
+        <P><h1>DATE: 2025.7.3</h1>EVENTS created!</P><br>
+        </div>
     </section>
     
     
@@ -582,8 +596,12 @@
     
     
     <section id="contact">
-      <h1></h1>
-      <div style="height: 500px;"></div>
+      <h1>BLOGS</h1>
+      <div class="text-box">   <!-- BLOG1 -->
+        <P><h1></h1></P><br>
+        <P><h1>DATE: 2025.7.3</h1>BLOGS created!<br>I'm trying to complete tryhackme.</P><br>
+      </div>
+    </section>
     </section>
   </main>
 
