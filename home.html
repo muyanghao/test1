@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+<<<<<<< HEAD
+  <title>tide-bit</title>
+=======
   <meta charset="UTF-8" />
   <title>Tidebit</title>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="918b421f-f581-421e-b8fd-7e57ba807167"></script>
+  <script>etch("https://tidebit-backend.onrender.com/log-ip");</script>
   <style>
     html, body {
       margin: 0;
@@ -390,377 +395,52 @@
 
     
   </style>
+>>>>>>> 5c3c9081798cc37b213dbcd91ac852bd4d9926a6
 </head>
 <body>
-  
-  <canvas id="stars"></canvas>
-  <canvas id="meteors"></canvas>
-  <header class="header">
-    <div class="spacer"></div> 
-    <nav class="nav">
-      <a class="active" onclick="showPage('home')">Home</a>
-      <a onclick="showPage('features')">Download</a>
-      <a onclick="showPage('purchase')">Purchase</a>
-      <a onclick="showPage('contact')">Discord</a>
-    </nav>
-  
-    <!-- <div class="login-btn" id="authArea">
-      <a href="pages/login.html">Login</a>
-    </div> -->
-  </header>
+  <h2>login</h2>
 
-  
+  <form id="loginForm">
+    <label for="username">username：</label><br>
+    <input type="text" id="username" name="username"><br><br>
 
-  <main>
-    <section id="home" class="active">  
-      
-      
-      <div class="hero">
-       <div class="hero-title-wrapper">
-          <img src="img/logo1.png" alt="Tidebit Logo" class="logo-icon">
-          <h1 class="hero-title">TIDEBIT</h1>
-        </div>
+    <label for="password">password：</label><br>
+    <input type="password" id="password" name="password"><br><br>
 
-        <p class="hero-subtitle">
-          The premium utility mod for modern Minecraft<br>
-          Tidebit provides a variety of features to<br>
-          enhance your gameplay experience.
-        </p>
-      </div>
-      <img id="pigImage" src="img/pig1.png" alt="Pig">
+    <input type="submit" value="login">
+  </form>
 
-
-      <div class="features">
-        <h2 class="features-title">Features to enhance your <br> experience</h2>
-        <div class="feature-grid">
-          <div class="feature-box">
-            <div class="icon">👁️‍🗨️</div>
-            <h3>Visuals</h3>
-            <p>Unique and sleek client renders to elevate your visuals</p>
-          </div>
-          <div class="feature-box">
-            <div class="icon">🏃‍♂️</div>
-            <h3>Utility</h3>
-            <p>Multitude of utility features for modern Minecraft servers</p>
-          </div>
-          <div class="feature-box">
-            <div class="icon">🔥</div>
-            <h3>PVP</h3>
-            <p>Elite PVP features for domination on crystal PVP servers</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="pricing-section">                  <!-- price -->
-        <h2 class="pricing-title">Pricing</h2>
-        <p class="pricing-subtitle">View our pricing options and choose the best fit for you.</p>
-
-        <div class="pricing-cards">
-    <!-- Standard -->
-          <div class="card">
-            <h3>Standard Access</h3>
-            <div class="price">$19.99</div>
-            <ul>
-              <li>✔ License key for one device</li>
-              <li>✔ Premium client support</li>
-              <li>✔ Lifetime access to all utility features</li>
-              <li>✔ Access to public configs</li>
-              <li>✔ Access to client forums</li>
-            </ul>
-            <a href="#" class="pricing-btn">Get Access</a>
-          </div>
-
-    <!-- Beta -->
-          <div class="card premium">
-            <h3>Beta Access</h3>
-            <div class="price">$249.99</div>
-            <ul>
-              <li>✔ Updates before release</li>
-              <li>✔ Direct contact with developers</li>
-              <li>✔ Exclusive Beta-only features</li>
-              <li>✔ Access to developer configs</li>
-              <li>✔ Exclusive IRC cosmetics</li>
-            </ul>
-            <a href="#" class="pricing-btn">Get Access</a>
-          </div>
-        </div>
-      </div>
-
-    
-    </section>
-    <section id="features">
-      <a></a><br>
-      <!-- <a href="download/BBTT.json" download class="download-btn">Download</a><br> -->
-
-      <a href="./pages/chat.html" class="chat">chat</a><br>
-      <div style="height: 50px;"></div>
-      <a href="./pages/status.html" class="status">status</a>
-      <div style="height: 500px;"></div>
-
-    </section>
-    
-    
-    <section id="purchase">
-      
-      <div class="pricing-section">                  <!-- price -->
-        <h2 class="pricing-title">Pricing</h2>
-        <p class="pricing-subtitle">View our pricing options and choose the best fit for you.</p>
-
-        <div class="pricing-cards">
-    <!-- Standard -->
-          <div class="card">
-            <h3>Standard Access</h3>
-            <div class="price">$19.99</div>
-            <ul>
-              <li>✔ License key for one device</li>
-              <li>✔ Premium client support</li>
-              <li>✔ Lifetime access to all utility features</li>
-              <li>✔ Access to public configs</li>
-              <li>✔ Access to client forums</li>
-            </ul>
-            <a href="#" class="pricing-btn">Get Access</a>
-          </div>
-
-    <!-- Beta -->
-          <div class="card premium">
-            <h3>Beta Access</h3>
-            <div class="price">$249.99</div>
-            <ul>
-              <li>✔ Updates before release</li>
-              <li>✔ Direct contact with developers</li>
-              <li>✔ Exclusive Beta-only features</li>
-              <li>✔ Access to developer configs</li>
-              <li>✔ Exclusive IRC cosmetics</li>
-            </ul>
-            <a href="#" class="pricing-btn">Get Access</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="compare-section">
-        <h1 class="compare-title">Compare Plans</h1>
-        <p class="compare-subtitle">Learn the benefits of the different Shoreline pricing plans.</p>
-
-        <div class="compare-table">
-          <div class="compare-row header">
-            <div>Plans</div>
-            <div>Standard</div>
-            <div>Beta</div>
-          </div>
-          <div class="compare-row">
-            <div>Max Devices</div>
-            <div>1</div>
-            <div>2</div>
-          </div>
-          <div class="compare-row">
-            <div>Priority Support</div>
-            <div>❌</div>
-            <div>✅</div>
-          </div>
-          <div class="compare-row">
-            <div>Developer Configs</div>
-            <div>❌</div>
-            <div>✅</div>
-          </div>
-          <div class="compare-row">
-            <div>Nightly Builds</div>
-            <div>❌</div>
-            <div>✅</div>
-          </div>
-          <div class="compare-row">
-            <div>IRC Cosmetics</div>
-            <div>❌</div>
-            <div>✅</div>
-          </div>
-        </div>
-      </div>
-
-
-    </section>
-    
-    
-    <section id="contact">
-      <h1></h1>
-      <div style="height: 500px;"></div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <p>&copy; 2025 Tidebit. All rights reserved.</p>
-  </footer>
-
-
-  
- <!-- //pig................ -->
-
-  <!-- <script>  
-    const pig = document.getElementById("pigImage");
-
-   window.addEventListener("scroll", () => {
-      const rect = pig.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-    
-      const offset = rect.top + rect.height / 2 - windowHeight / 2;
-
-    
-      const clampedOffset = Math.max(-200, Math.min(200, offset));
-
-    
-      const rotateX = clampedOffset / 20; 
-      const scale = 1 - Math.abs(clampedOffset) / 2000;  
-
-      pig.style.transform = `perspective(1000px) rotateX(${rotateX}deg) scale(${1 + scale})`;
-    });
-  </script> -->
-
-
-  
-  
+  <p id="message"></p>
 
   <script>
-    const navLinks = document.querySelectorAll(".nav a");
-    function showPage(id) {
-      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
-      document.getElementById(id).classList.add("active");
-      navLinks.forEach(link => link.classList.remove("active"));
-      event.target.classList.add("active");
-    }
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
 
-    // 登录状态检查
-    function updateLoginUI() {
-      const authArea = document.getElementById("authArea");
-      const username = localStorage.getItem("username");
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
 
-      if (username) {
-        const container = document.createElement("div");
-        container.className = "user-container";
-
-        const nameSpan = document.createElement("span");
-        nameSpan.textContent = username;
-
-        const logoutBtn = document.createElement("span");
-        logoutBtn.className = "logout";
-        logoutBtn.textContent = "Log out";
-        logoutBtn.onclick = () => {
-          localStorage.removeItem("username");
-          location.reload();
-        };
-
-        container.appendChild(nameSpan);
-        container.appendChild(logoutBtn);
-
-        authArea.replaceWith(container);
+      fetch("https://tidebit-backend.onrender.com/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ username, password })
+        })
+        .then(response => {
+        if (response.ok) {
+         window.location.href = "home.html";
+        } else {
+            return response.json().then(data => {
+            throw new Error(data.message);
+        });
       }
-    }
+})
+.catch(error => {
+  document.getElementById("message").textContent = error.message;
+});
 
-    updateLoginUI();
-
-    // 星空背景动画
-    const canvas = document.getElementById("stars");
-    const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const stars = Array.from({ length: 100 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 1 + 0.5,
-      speed: Math.random() * 0.2 + 0.1
-    }));
-
-    function animateStars() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (const s of stars) {
-        s.y += s.speed;
-        if (s.y > canvas.height) s.y = 0;
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, 2 * Math.PI);
-        ctx.fillStyle = "white";
-        ctx.fill();
-      }
-      requestAnimationFrame(animateStars);
-    }
-
-    animateStars();
-
-    window.addEventListener("resize", () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-
-    document.addEventListener("mousemove", (e) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 40;
-      const y = (e.clientY / window.innerHeight - 0.5) * 40;
-      const canvas = document.getElementById("stars");
-      if (canvas) {
-        canvas.style.transform = `translate(${x}px, ${y}px)`;
-      }
     });
   </script>
-
-  <script>
-  const meteorCanvas = document.getElementById("meteors");
-  const meteorCtx = meteorCanvas.getContext("2d");
-  meteorCanvas.width = window.innerWidth;
-  meteorCanvas.height = window.innerHeight;
-
-  const meteors = [];
-
-  function spawnMeteor() {
-    const meteor = {
-      x: Math.random() * meteorCanvas.width,
-      y: Math.random() * (meteorCanvas.height / 2),
-      length: Math.random() * 30 + 30,
-      speed: 900, 
-      opacity: Math.random() * 0.3 + 0.4,
-      angle: (5 * -Math.PI) / 4,
-      createdAt: performance.now()
-    };
-    meteors.push(meteor);
-  }
-
-  function animateMeteors(now) {
-    meteorCtx.clearRect(0, 0, meteorCanvas.width, meteorCanvas.height);
-
-    const alive = [];
-
-    for (const m of meteors) {
-      const elapsed = now - m.createdAt;
-      if (elapsed > 400) continue; 
-
-      const t = elapsed / 1000;
-      const dx = Math.cos(m.angle) * m.length;
-      const dy = Math.sin(m.angle) * m.length;
-
-      const x = m.x + Math.cos(m.angle) * m.speed * t;
-      const y = m.y + Math.sin(m.angle) * m.speed * t;
-
-      meteorCtx.beginPath();
-      meteorCtx.moveTo(x, y);
-      meteorCtx.lineTo(x + dx, y + dy);
-      meteorCtx.strokeStyle = `rgba(255,255,255,${m.opacity})`;
-      meteorCtx.lineWidth = 0.8;
-      meteorCtx.stroke();
-
-      alive.push(m);
-    }
-
-    meteors.length = 0;
-    meteors.push(...alive);
-
-    requestAnimationFrame(animateMeteors);
-  }
-
-  setInterval(spawnMeteor, 1100 + Math.random() * 900);
-
-  requestAnimationFrame(animateMeteors);
-
-  window.addEventListener("resize", () => {
-    meteorCanvas.width = window.innerWidth;
-    meteorCanvas.height = window.innerHeight;
-  });
-</script>
 
 </body>
 </html>
